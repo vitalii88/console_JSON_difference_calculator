@@ -1,0 +1,27 @@
+{
+  "name": "@hexlet/code",
+  "version": "1.0.0",
+  "description": "The second project in the profession of Front-end JS on the hexlet.io portal",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitalii88/frontend-project-lvl2.git"
+  },
+  "author": "Vitalii Bairak <vitalii_b88@yahoo.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vitalii88/frontend-project-lvl2/issues"
+  },
+  "homepage": "https://github.com/vitalii88/frontend-project-lvl2#readme",
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
