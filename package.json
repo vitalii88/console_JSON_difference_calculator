@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "The second project in the profession of Front-end JS on the hexlet.io portal",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "release": "standard-version"
@@ -28,5 +29,8 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "dependencies": {
+    "commander": "^7.0.0"
   }
 }
