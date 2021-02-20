@@ -1,11 +1,12 @@
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
+import { _ } from 'lodash';
 /**
  * The function takes 2 arguments.
  * 1.path to JSON file
  * 2.format in which will return the result:
- * string - will return the file structure in string format.
- * object - return structure in object format
+ * 'string' - will return the file structure in string format.
+ * 'object' - return structure in object format
  */
 const getDataFromJSON = (packageDist, format) => {
   const normalaizDist = resolve(packageDist);
