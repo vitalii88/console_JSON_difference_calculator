@@ -1,6 +1,6 @@
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
-import { _ } from 'lodash';
+import * as _ from 'lodash';
 /**
  * The function takes 2 arguments.
  * 1.path to JSON file

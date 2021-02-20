@@ -6,9 +6,17 @@ import { getDataFromJSON } from '../src/functions.js';
 const gendiff = new Command();
 
 gendiff
-  .version('1.2.0');
+  .name('gendiff ')
+
+  .description('Compares two configuration files and shows a difference.')
+  .version('1.2.0')
 
 gendiff
-  .option('-f, --format [type]', 'output format');
+  .arguments('<filepath1> <filepath2>')
+  .option('-f, --format [type]', 'output format')
+  // .action(...args,)
 
 gendiff.parse(process.argv);
+
+const options = gendiff.opts();
+if (options.format) console.log('This option is not implemented in the current version of the application.');
