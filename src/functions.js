@@ -1,5 +1,6 @@
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
+import { cwd } from 'process';
 import * as _ from 'lodash';
 /**
  * The function takes 2 arguments.
@@ -9,13 +10,13 @@ import * as _ from 'lodash';
  * 'object' - return structure in object format
  */
 const getDataFromJSON = (packageDist, format) => {
-  const normalaizDist = resolve(packageDist);
+  const normalaizDist = resolve(cwd(), packageDist);
   const data = readFileSync(normalaizDist);
 
   let res;
   switch (format) {
     case 'string':
-      res = JSON.stringify(data);
+      res = data.toString();
       break;
     case 'object':
       res = JSON.parse(data);
