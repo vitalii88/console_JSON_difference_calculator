@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/vitalii88/frontend-project-lvl2/compare/v1.2.0...v2.0.0) (2021-02-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* **functions.js:** Fixed working with relative paths
+
+### Features
+
+* **add new function getdatafromjson():** add new function getdatafromjson() ([431a2f5](https://github.com/vitalii88/frontend-project-lvl2/commit/431a2f5ad7b3c8aeeae036231277378b3455ea3b))
+
+
+### Bug Fixes
+
+* **functions.js:** fix getDataFromJSON ([c0770b3](https://github.com/vitalii88/frontend-project-lvl2/commit/c0770b3c31f94526f656c64b5312be8625e1cac3))
+
 ## [1.2.0](https://github.com/vitalii88/frontend-project-lvl2/compare/v1.1.0...v1.2.0) (2021-02-11)
 
 
