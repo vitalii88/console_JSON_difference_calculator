@@ -1,13 +1,12 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander';
-import { getDataFromJSON } from '../src/functions.js';
+import { genFlatFileDiff } from '../src/functions.js';
 
 const gendiff = new Command();
 
 gendiff
   .name('gendiff ')
-
   .description('Compares two configuration files and shows a difference.')
   .version('1.2.0')
 
