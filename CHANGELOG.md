@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/vitalii88/frontend-project-lvl2/compare/v2.0.0...v3.0.0) (2021-03-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* **gendiff.js:** Added comparison of two flat arrays.
+
+### Features
+
+* **functions.js:** add NEW function "genFlatFileDiff()" ([63e85dd](https://github.com/vitalii88/frontend-project-lvl2/commit/63e85ddad84043a105f9dd1b73f7fe02eb390d6c))
+* **gendiff.js:** add Added comparison of two flat arrays ([7789b07](https://github.com/vitalii88/frontend-project-lvl2/commit/7789b07bb130eb71cd621a65ad8947a49d62afe5))
+
 ## [2.0.0](https://github.com/vitalii88/frontend-project-lvl2/compare/v1.2.0...v2.0.0) (2021-02-22)
 
 
