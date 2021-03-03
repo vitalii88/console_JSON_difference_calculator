@@ -13,7 +13,9 @@ gendiff
 gendiff
   .arguments('<filepath1> <filepath2>')
   .option('-f, --format [type]', 'output format')
-  // .action(...args,)
+  .action((filepath1, filepath2) => {
+    genFlatFileDiff(filepath1, filepath2);
+  });
 
 gendiff.parse(process.argv);
 
