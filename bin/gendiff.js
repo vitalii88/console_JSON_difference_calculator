@@ -8,7 +8,7 @@ const gendiff = new Command();
 gendiff
   .name('gendiff ')
   .description('Compares two configuration files and shows a difference.')
-  .version('1.2.0')
+  .version('1.2.0');
 
 gendiff
   .arguments('<filepath1> <filepath2>')

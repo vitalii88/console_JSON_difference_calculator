@@ -25,7 +25,6 @@ const getDataFromJSON = (packageDist, format) => {
     default:
       res = data;
   }
-
   return res;
 };
 
@@ -48,12 +47,8 @@ const genFlatFileDiff = (file1, file2) => {
   const allKeys = Object.getOwnPropertyNames(_.defaults(sortObject1, sortObject2));
 
   const diffArr = allKeys.reduce((acc, key) => {
-    const arg1 = objToArr1.find(element1 => {
-      if (element1[0] === key) return element1;
-    });
-    const arg2 = objToArr2.find(element2 => {
-      if (element2[0] === key) return element2;
-    });
+    const arg1 = objToArr1.find((element1) => element1[0] === key);
+    const arg2 = objToArr2.find((element2) => element2[0] === key);
 
     if (arg1 !== undefined && arg2 !== undefined) {
       if (arg1[1] === arg2[1]) {

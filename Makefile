@@ -9,3 +9,9 @@ install:
 
 publish:
 	npm publish --dry-run
+
+test:
+	npm run test
+
+test-watch:
+	npm run test:watch
