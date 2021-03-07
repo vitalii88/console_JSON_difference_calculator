@@ -63,7 +63,7 @@ const genFlatFileDiff = (file1, file2) => {
     if (arg1 === undefined) acc.push([`  + ${arg2[0]}: ${arg2[1]}`]);
     return acc;
   }, []);
-  return console.log(`{\n${diffArr.join('\n')}\n}`);
+  return `{\n${diffArr.join('\n')}\n}`;
 };
 
 export {

@@ -14,7 +14,8 @@ gendiff
   .arguments('<filepath1> <filepath2>')
   .option('-f, --format [type]', 'output format')
   .action((filepath1, filepath2) => {
-    genFlatFileDiff(filepath1, filepath2);
+    const flatRes = genFlatFileDiff(filepath1, filepath2);
+    console.log(flatRes);
   });
 
 gendiff.parse(process.argv);
