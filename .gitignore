@@ -1,5 +1,4 @@
 node_modules
-.idea
-test_file
-*.log
 coverage
+.idea
+*.log
