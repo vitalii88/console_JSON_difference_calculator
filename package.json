@@ -8,8 +8,8 @@
     "gendiff": "bin/gendiff.js"
   },
   "scripts": {
-    "test": "npx -n --experimental-vm-modules --no-warnings jest --colors",
-    "test:watch": "npx -n --experimental-vm-modules jest --watch --colors",
+    "test": "npx jest",
+    "test:watch": "npx jest --watch",
     "release": "standard-version"
   },
   "jest": {
