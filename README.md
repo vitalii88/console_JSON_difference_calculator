@@ -9,3 +9,7 @@ To compare two flat JSON files, call the utility. Pass the paths to the file as 
 Example: `gendiff /users/home/file1.json ../home/file2.json`
 
 [![asciicast](https://asciinema.org/a/KOiJI9B0pPcOK5oJ7PqgWUH5p.svg)](https://asciinema.org/a/KOiJI9B0pPcOK5oJ7PqgWUH5p)
+
+To compare two flat YAML files, call the utility.
+Example: `gendiff /users/home/file1.yaml ../home/file2.yaml`
+[![asciicast](https://asciinema.org/a/OQmjl0ZhNuNaCRYm5ivyeheVO.svg)](https://asciinema.org/a/OQmjl0ZhNuNaCRYm5ivyeheVO)
