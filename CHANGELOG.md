@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.0.0](https://github.com/vitalii88/frontend-project-lvl2/compare/v3.0.1...v4.0.0) (2021-03-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* Add parser YAML files. Rename src/function.js to src/parsers.js. Refactoring
+'genFlatFile
+
+### Features
+
+* add pars YAML files ([19d3c00](https://github.com/vitalii88/frontend-project-lvl2/commit/19d3c00293cb3de0b9ade9832be0778fef3ef629))
+
+
+### Bug Fixes
+
+* fix test scripts ([69c1b4c](https://github.com/vitalii88/frontend-project-lvl2/commit/69c1b4c46d345a285985780bc702e46041915c25))
+* fix tests ([bb0c10e](https://github.com/vitalii88/frontend-project-lvl2/commit/bb0c10efd57f8e35d75656692d69f2af3318b473))
+
 ### [3.0.1](https://github.com/vitalii88/frontend-project-lvl2/compare/v3.0.0...v3.0.1) (2021-03-09)
 
 ## [3.0.0](https://github.com/vitalii88/frontend-project-lvl2/compare/v2.0.0...v3.0.0) (2021-03-03)
