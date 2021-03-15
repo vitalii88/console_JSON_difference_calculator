@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander';
-import { genFlatFileDiff } from '../src/functions.js';
+import genFlatFileDiff from '../src/parsers.js';
 
 const gendiff = new Command();
 

@@ -13,7 +13,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
-* **functions.js:** add NEW function "genFlatFileDiff()" ([63e85dd](https://github.com/vitalii88/frontend-project-lvl2/commit/63e85ddad84043a105f9dd1b73f7fe02eb390d6c))
+* **parsers.js:** add NEW function "genFlatFileDiff()" ([63e85dd](https://github.com/vitalii88/frontend-project-lvl2/commit/63e85ddad84043a105f9dd1b73f7fe02eb390d6c))
 * **gendiff.js:** add Added comparison of two flat arrays ([7789b07](https://github.com/vitalii88/frontend-project-lvl2/commit/7789b07bb130eb71cd621a65ad8947a49d62afe5))
 
 ## [2.0.0](https://github.com/vitalii88/frontend-project-lvl2/compare/v1.2.0...v2.0.0) (2021-02-22)
@@ -21,7 +21,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### ⚠ BREAKING CHANGES
 
-* **functions.js:** Fixed working with relative paths
+* **parsers.js:** Fixed working with relative paths
 
 ### Features
 
@@ -30,7 +30,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Bug Fixes
 
-* **functions.js:** fix getDataFromJSON ([c0770b3](https://github.com/vitalii88/frontend-project-lvl2/commit/c0770b3c31f94526f656c64b5312be8625e1cac3))
+* **parsers.js:** fix getDataFromJSON ([c0770b3](https://github.com/vitalii88/frontend-project-lvl2/commit/c0770b3c31f94526f656c64b5312be8625e1cac3))
 
 ## [1.2.0](https://github.com/vitalii88/frontend-project-lvl2/compare/v1.1.0...v1.2.0) (2021-02-11)
 
