@@ -33,51 +33,41 @@ const getData = (packageDist, format) => {
 const getSortObjFromKey = (object) => Object.fromEntries(Object.entries(object).sort());
 
 /**
- * the function takes 3 arguments:
- * keys: An array of all keys
- * beforeArr: original array
- * afterArr: array with result
- * The result of the function will be an array with states
- */
-const genDiffArr = (keys, beforeArr, afterArr) => keys.reduce((acc, key) => {
-  const arg1 = beforeArr.find((element1) => element1[0] === key);
-  const arg2 = afterArr.find((element2) => element2[0] === key);
-
-  if (arg1 !== undefined && arg2 !== undefined) {
-    if (arg1[1] === arg2[1]) {
-      acc.push([`    ${arg1[0]}: ${arg1[1]}`]);
-    } else {
-      acc.push([`  - ${arg1[0]}: ${arg1[1]}`]);
-      acc.push([`  + ${arg2[0]}: ${arg2[1]}`]);
-    }
-    return acc;
-  }
-  if (arg1 !== undefined && arg2 === undefined) acc.push([`  - ${arg1[0]}: ${arg1[1]}`]);
-  if (arg1 === undefined) acc.push([`  + ${arg2[0]}: ${arg2[1]}`]);
-  return acc;
-}, []);
-
-/**
  * Retrieves unique keys
  * @param firstObj
  * @param secondObj
  * @returns {string[]}
+ * Alternative "_.union(Object.keys(firstObj), Object.keys(secondObj));"
  */
-const getUnqKeys = (firstObj, secondObj) => {
-  // return Object.getOwnPropertyNames(_.defaults(firstObj, secondObj));
-  return _.union(Object.keys(firstObj), Object.keys(secondObj));
-  // const key1 = Object.keys(firstObj);
-  // console.log('key1 ==>', key1);
-  // const key2 = Object.keys(secondObj);
-  // console.log('key2 ==>', key2);
-  // return _.union(key1, key2);
-}
+const getUnqKeys = (firstObj, secondObj) => [...new Set([...Object.keys(firstObj), ...Object.keys(secondObj)])];
 
 /**
  *
  */
-const builder = () => {
+const builder = (beforeObj, afterObj) => {
+  const before = getSortObjFromKey(beforeObj);
+  const after = getSortObjFromKey(afterObj);
+  const allKeys = getUnqKeys(before, after);
+  // console.log('allKeys ==> ', allKeys);
+  // console.log('before After allKeys ==> ', before);
+  // console.log('after After allKeys ==> ', after);
+  const tree = allKeys.map((key) => {
+    // console.log('Map Key => ', key);
+    // console.log('before[key] => ', before[key]);
+    const past = before[key];
+    // console.log('after[key] => ', after[key]);
+    const current = after[key];
+    if (!_.has(before, key)) return { status: 'added', key, current };
+    if (!_.has(after, key)) return { status: 'deleted', key, past };
+    if (typeof past === 'object' && typeof current === 'object') {
+      const children = builder(past, current);
+      return { status: 'node', key, children };
+    }
+    if (!_.isEqual(past, current)) return { status: 'notEqual', key, past, current, };
+    return { status: 'areEqual', key, past }
+  });
 
+  return tree;
 }
 
 /**
@@ -86,32 +76,17 @@ const builder = () => {
  * in the second file in relation to the first.
  * { key: xxx,
  *   value: yyy,
- *   status: areEqual, deleted, added
+ *   status: notEqual, deleted, added, node
  *    child: {}
  * }
  */
 export default function genFlatFileDiff(file1, file2) {
   const format = extname(file1);
-  const sortObject1 = getSortObjFromKey(getData(file1, format));
-  console.log('sortObject1 ==> ', sortObject1);
-  const sortObject2 = getSortObjFromKey(getData(file2, format));
-  console.log('sortObject2 ==> ', sortObject2);
-  // const objToArr1 = Object.entries(sortObject1);
-  // const objToArr2 = Object.entries(sortObject2);
-
-  const allKeys = getUnqKeys(sortObject1, sortObject2);
-  console.log('allKeys ==> ', allKeys);
-  console.log('sortObject1 After allKeys ==> ', sortObject1);
-  console.log('sortObject2 After allKeys ==> ', sortObject2);
-  const tree = allKeys.map((key) => {
-    console.log('Map Key => ', key);
-    console.log('sortObject1[key] => ', sortObject1[key]);
-    console.log('sortObject2[key] => ', sortObject2[key]);
-    // if (!_.has(sortObject1, key)) {
-    //   return {  };
-    // }
-  });
-
+  const object1 = getData(file1, format);
+  const object2 = getData(file2, format);
+  const res = builder(object1, object2);
+  console.log('---------------------------')
+  console.dir(res, {depth: 10});
 
   // const diffArr = genDiffArr(allKeys, objToArr1, objToArr2);
   // return `{\n${diffArr.join('\n')}\n}`;
