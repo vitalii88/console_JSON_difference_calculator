@@ -3,18 +3,19 @@ import { resolve, extname } from 'path';
 import { cwd } from 'process';
 import _ from 'lodash';
 import yaml from 'js-yaml';
+import stylishFormater from './formaters/stylish.js';
 
 /**
  * The function takes 2 arguments.
  * 1.path to file
  * 2.file format
   */
-const getData = (packageDist, format) => {
+const getData = (packageDist, fileType) => {
   const normalaizDist = resolve(cwd(), packageDist);
   const data = readFileSync(normalaizDist, 'utf-8');
 
   let res;
-  switch (format) {
+  switch (fileType) {
     case '.yaml':
       res = yaml.load(data);
       break;
@@ -33,43 +34,56 @@ const getData = (packageDist, format) => {
 const getSortObjFromKey = (object) => Object.fromEntries(Object.entries(object).sort());
 
 /**
- * the function takes 3 arguments:
- * keys: An array of all keys
- * beforeArr: original array
- * afterArr: array with result
- * The result of the function will be an array with states
+ * Retrieves unique keys
+ * @param firstObj
+ * @param secondObj
+ * @returns {string[]}
+ * Alternative "_.union(Object.keys(firstObj), Object.keys(secondObj));"
  */
-const genDiffArr = (keys, beforeArr, afterArr) => keys.reduce((acc, key) => {
-  const arg1 = beforeArr.find((element1) => element1[0] === key);
-  const arg2 = afterArr.find((element2) => element2[0] === key);
-
-  if (arg1 !== undefined && arg2 !== undefined) {
-    if (arg1[1] === arg2[1]) {
-      acc.push([`    ${arg1[0]}: ${arg1[1]}`]);
-    } else {
-      acc.push([`  - ${arg1[0]}: ${arg1[1]}`]);
-      acc.push([`  + ${arg2[0]}: ${arg2[1]}`]);
-    }
-    return acc;
-  }
-  if (arg1 !== undefined && arg2 === undefined) acc.push([`  - ${arg1[0]}: ${arg1[1]}`]);
-  if (arg1 === undefined) acc.push([`  + ${arg2[0]}: ${arg2[1]}`]);
-  return acc;
-}, []);
+const getUnqKeys = (firstObj, secondObj) => [
+  ...new Set([...Object.keys(firstObj), ...Object.keys(secondObj)]),
+];
 
 /**
- * The function takes two arguments: paths to files with flat objects.
- * The result of the function will be a line with marks about changes
- * in the second file in relation to the first.
+ *
  */
-export default function genFlatFileDiff(file1, file2) {
-  const format = extname(file1);
-  const sortObject1 = getSortObjFromKey(getData(file1, format));
-  const sortObject2 = getSortObjFromKey(getData(file2, format));
-  const objToArr1 = Object.entries(sortObject1);
-  const objToArr2 = Object.entries(sortObject2);
-  const allKeys = Object.getOwnPropertyNames(_.defaults(sortObject1, sortObject2));
+const builder = (beforeObj, afterObj) => {
+  const before = getSortObjFromKey(beforeObj);
+  const after = getSortObjFromKey(afterObj);
+  const allKeys = getUnqKeys(before, after);
 
-  const diffArr = genDiffArr(allKeys, objToArr1, objToArr2);
-  return `{\n${diffArr.join('\n')}\n}`;
+  const tree = allKeys.map((key) => {
+    const past = before[key];
+    const current = after[key];
+    if (!_.has(before, key)) return { status: 'added', key, current };
+    if (!_.has(after, key)) return { status: 'deleted', key, past };
+    if (typeof past === 'object' && typeof current === 'object') {
+      const children = builder(past, current);
+      return { status: 'node', key, children };
+    }
+    if (!_.isEqual(past, current)) {
+      return {
+        status: 'notEqual', key, past, current,
+      };
+    }
+    return { status: 'areEqual', key, past };
+  });
+
+  return tree;
+};
+
+/**
+ *
+ * @param {file1}
+ * @param {file2}
+ * @param {format}
+ * @returns {*}
+ */
+export default function geneDiff(file1, file2, format = 'stylish') {
+  const fileType = extname(file1);
+  const object1 = getData(file1, fileType);
+  const object2 = getData(file2, fileType);
+  const res = builder(object1, object2);
+  const diffTree = stylishFormater(res);
+  return (format === 'stylish') ? stylishFormater(res) : diffTree;
 }
