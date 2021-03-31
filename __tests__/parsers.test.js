@@ -15,14 +15,14 @@ describe('genFlatFileDiff', () => {
   });
 });
 
-describe('genFlatYamlDiff', () => {
-  test('read yaml file', () => {
-    const file = yaml.load(readFile('beforeFlat.yaml'));
-    expect(file).not.toBeFalsy();
-  });
-  test('to compare two flat YAML files', () => {
-    const result = genFlatFileDiff(getFixturePath('beforeFlat.yaml').trim(), getFixturePath('afterFlat.yaml')).trim();
-    const reference = readFile('expected_json').trim();
-    expect(reference).toBe(result);
-  });
-});
+// describe('genFlatYamlDiff', () => {
+//   test('read yaml file', () => {
+//     const file = yaml.load(readFile('beforeFlat.yaml'));
+//     expect(file).not.toBeFalsy();
+//   });
+//   test('to compare two flat YAML files', () => {
+//     const result = genFlatFileDiff(getFixturePath('beforeFlat.yaml').trim(), getFixturePath('afterFlat.yaml')).trim();
+//     const reference = readFile('expected_json').trim();
+//     expect(reference).toBe(result);
+//   });
+// });

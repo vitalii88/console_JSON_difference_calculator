@@ -40,7 +40,9 @@ const getSortObjFromKey = (object) => Object.fromEntries(Object.entries(object).
  * @returns {string[]}
  * Alternative "_.union(Object.keys(firstObj), Object.keys(secondObj));"
  */
-const getUnqKeys = (firstObj, secondObj) => [...new Set([...Object.keys(firstObj), ...Object.keys(secondObj)])];
+const getUnqKeys = (firstObj, secondObj) => {
+  return [...new Set([...Object.keys(firstObj), ...Object.keys(secondObj)])];
+};
 
 /**
  *
@@ -91,7 +93,7 @@ export default function genFlatFileDiff(file1, file2) {
   const diffTree = stylishFormater(res);
   // const diffArr = genDiffArr(allKeys, objToArr1, objToArr2);
   // return `{\n${diffArr.join('\n')}\n}`;
-  return 'END';
+  return diffTree;
 }
 
 

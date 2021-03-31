@@ -1,53 +1,46 @@
-import _ from 'lodash';
+const getIndent = (depth) => {
+  const current = '  '.repeat(depth);
+  const bracket = (depth <= 1) ? '' : '  '.repeat(depth - 1);
+  return { current, bracket };
+};
 
-
-const check = (value, replaser = '') => {
+const check = (value, depth = 1) => {
+  const idents = getIndent(depth);
   if (typeof value !== 'object') {
     return value;
   }
   const [key, val] = Object.entries(value).flat();
-  return `{\n${replaser}${replaser}${key}: ${check(val)}\n}`;
-}
-// const spacesCount = (replacer = ' ', count = 1, depth = 1) => {
-//   return replacer.repeat(count * depth);
-// };
+  return `{\n${idents.current}${key}: ${check(val)}\n${idents.bracket}}`;
+};
+
 const stylishFormater = (parsTree, depth = 1) => {
-  const replacer = '  ';
-  const spacesCount = 1;
-  const indentSize = depth * spacesCount;
-  const currentIndent = replacer.repeat(indentSize);
-  const bracketIndent = replacer.repeat(indentSize - spacesCount);
-  const str = parsTree.flatMap(({status, key, past, current, children}) => {
+  // const replacer = ' ';
+  const idents = getIndent(depth);
+  const str = parsTree.flatMap(({
+    status, key, past, current, children
+  }) => {
     if (status === 'deleted') {
-      return `${currentIndent}- ${key}: ${check(past, currentIndent)}`;
+      return `${idents.current}- ${key}: ${check(past, depth + 2)}`;
     }
     if (status === 'added') {
-      return `${currentIndent}+ ${key}: ${check(current, currentIndent)}`;
+      return `${idents.current}+ ${key}: ${check(current, depth + 2)}`;
     }
     if (status === 'areEqual') {
-      return `${currentIndent}  ${key}: ${check(past, currentIndent)}`;
+      return `${idents.current}  ${key}: ${check(past, depth + 2)}`;
     }
     if (status === 'notEqual') {
-      return `${currentIndent}- ${key}: ${check(past, currentIndent)}\n${currentIndent}+ ${key}: ${check(current, currentIndent)}`;
+      return `${idents.current}- ${key}: ${check(past, depth + 2)}\n${idents.current}+ ${key}: ${check(current, depth + 2)}`;
     }
     if (status === 'node') {
-      // console.log('children =======>', children)
-      const zzz = stylishFormater(children, depth + 1);
-      // console.log('zzz ===> ', zzz);
-      return `${currentIndent}  ${key}: ${zzz}`;
-      // return zzz;
+      const zzz = stylishFormater(children, depth + 2);
+      return `${idents.current}  ${key}: ${zzz}`;
     }
   });
-  /***********************************/
   const res = [
     '{',
     ...str,
-    `${bracketIndent}}`
+    `${idents.bracket}}`
   ].join('\n');
-  // console.log('str => ', str)
-  console.log('res ====>');
-  console.log(res);
-  // return console.log('END of stylishFormater');
   return res;
 }
 
