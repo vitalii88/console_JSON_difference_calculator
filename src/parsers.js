@@ -3,6 +3,7 @@ import { resolve, extname } from 'path';
 import { cwd } from 'process';
 import _ from 'lodash';
 import yaml from 'js-yaml';
+import stylishFormater from './formaters/stylish.js';
 
 /**
  * The function takes 2 arguments.
@@ -85,9 +86,9 @@ export default function genFlatFileDiff(file1, file2) {
   const object1 = getData(file1, format);
   const object2 = getData(file2, format);
   const res = builder(object1, object2);
-  console.log('---------------------------')
-  console.dir(res, {depth: 10});
-
+  // console.log('---------------------------')
+  // console.dir(res, {depth: 10});
+  const diffTree = stylishFormater(res);
   // const diffArr = genDiffArr(allKeys, objToArr1, objToArr2);
   // return `{\n${diffArr.join('\n')}\n}`;
   return 'END';
