@@ -14,34 +14,28 @@ const check = (value, depth = 1) => {
 };
 
 const stylishFormater = (parsTree, depth = 1) => {
-  // const replacer = ' ';
   const idents = getIndent(depth);
   const str = parsTree.flatMap(({
-    status, key, past, current, children
+    status, key, past, current, children,
   }) => {
-    if (status === 'deleted') {
-      return `${idents.current}- ${key}: ${check(past, depth + 2)}`;
-    }
-    if (status === 'added') {
-      return `${idents.current}+ ${key}: ${check(current, depth + 2)}`;
-    }
-    if (status === 'areEqual') {
-      return `${idents.current}  ${key}: ${check(past, depth + 2)}`;
-    }
-    if (status === 'notEqual') {
-      return `${idents.current}- ${key}: ${check(past, depth + 2)}\n${idents.current}+ ${key}: ${check(current, depth + 2)}`;
-    }
-    if (status === 'node') {
-      const zzz = stylishFormater(children, depth + 2);
-      return `${idents.current}  ${key}: ${zzz}`;
+    switch (status) {
+      case 'deleted':
+        return `${idents.current}- ${key}: ${check(past, depth + 2)}`;
+      case 'added':
+        return `${idents.current}+ ${key}: ${check(current, depth + 2)}`;
+      case 'areEqual':
+        return `${idents.current}  ${key}: ${check(past, depth + 2)}`;
+      case 'notEqual':
+        return `${idents.current}- ${key}: ${check(past, depth + 2)}\n${idents.current}+ ${key}: ${check(current, depth + 2)}`;
+      default:
+        return `${idents.current}  ${key}: ${stylishFormater(children, depth + 2)}`;
     }
   });
-  const res = [
+  return [
     '{',
     ...str,
-    `${idents.bracket}}`
+    `${idents.bracket}}`,
   ].join('\n');
-  return res;
-}
+};
 
 export default stylishFormater;

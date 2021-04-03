@@ -1,3 +1,6 @@
-timeout : 20
-verbose : true
-host : "hexlet.io"
+group1:
+  foo: "bar"
+  baz: "bars"
+  rts: "str"
+group3:
+  cash: "100"

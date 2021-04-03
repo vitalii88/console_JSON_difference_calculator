@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander';
-import genFlatFileDiff from '../src/parsers.js';
+import genDiff from '../src/parsers.js';
 
 const gendiff = new Command();
 
@@ -12,9 +12,9 @@ gendiff
 
 gendiff
   .arguments('<filepath1> <filepath2>')
-  .option('-f, --format [type]', 'output format')
+  .option('-f, --format [type]', 'output format', 'stylish')
   .action((filepath1, filepath2) => {
-    const flatRes = genFlatFileDiff(filepath1, filepath2);
+    const flatRes = genDiff(filepath1, filepath2, gendiff.opts().format);
     console.log(flatRes);
   });
 
