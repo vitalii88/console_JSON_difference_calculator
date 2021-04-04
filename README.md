@@ -13,3 +13,6 @@ Example: `gendiff /users/home/file1.json ../home/file2.json`
 To compare two flat YAML files, call the utility.
 Example: `gendiff /users/home/file1.yaml ../home/file2.yaml`
 [![asciicast](https://asciinema.org/a/OQmjl0ZhNuNaCRYm5ivyeheVO.svg)](https://asciinema.org/a/OQmjl0ZhNuNaCRYm5ivyeheVO)
+
+Comparison output of nested trees.
+[![asciicast](https://asciinema.org/a/405101.svg)](https://asciinema.org/a/405101)
