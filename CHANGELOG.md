@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.1.0](https://github.com/vitalii88/frontend-project-lvl2/compare/v4.0.0...v4.1.0) (2021-04-05)
+
+
+### Features
+
+* complite stylish diff builder and add defaults value. ([adb1748](https://github.com/vitalii88/frontend-project-lvl2/commit/adb174884464d0105e7c1c21417edc2083d84d84))
+
 ## [4.0.0](https://github.com/vitalii88/frontend-project-lvl2/compare/v3.0.1...v4.0.0) (2021-03-15)
 
 
