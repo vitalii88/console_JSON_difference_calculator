@@ -16,3 +16,6 @@ Example: `gendiff /users/home/file1.yaml ../home/file2.yaml`
 
 Comparison output of nested trees.
 [![asciicast](https://asciinema.org/a/405101.svg)](https://asciinema.org/a/405101)
+
+Comparison output of plain style.
+[![asciicast](https://asciinema.org/a/405570.svg)](https://asciinema.org/a/405570)
