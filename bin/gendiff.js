@@ -19,6 +19,3 @@ gendiff
   });
 
 gendiff.parse(process.argv);
-
-const options = gendiff.opts();
-if (options.format) console.log('This option is not implemented in the current version of the application.');
