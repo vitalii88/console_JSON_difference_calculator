@@ -1,0 +1,17 @@
+{
+    group1: {
+      - baz: bas
+      + baz: bars
+        foo: bar
+      - rts: {
+          key: value
+        }
+      + rts: str
+    }
+  - group2: {
+      complexity: high
+    }
+  + group3: {
+      cash: 100
+    }
+}

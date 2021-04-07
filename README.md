@@ -19,3 +19,6 @@ Comparison output of nested trees.
 
 Comparison output of plain style.
 [![asciicast](https://asciinema.org/a/405570.svg)](https://asciinema.org/a/405570)
+
+Comparison output of json style.
+[![asciicast](https://asciinema.org/a/405797.svg)](https://asciinema.org/a/405797)

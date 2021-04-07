@@ -1,17 +1,41 @@
-{
-    group1: {
-      - baz: bas
-      + baz: bars
-        foo: bar
-      - rts: {
-          key: value
-        }
-      + rts: str
+[
+  {
+    "status": "node",
+    "key": "group1",
+    "children": [
+      {
+        "status": "notEqual",
+        "key": "baz",
+        "past": "bas",
+        "current": "bars"
+      },
+      {
+        "status": "areEqual",
+        "key": "foo",
+        "past": "bar"
+      },
+      {
+        "status": "notEqual",
+        "key": "rts",
+        "past": {
+          "key": "value"
+        },
+        "current": "str"
+      }
+    ]
+  },
+  {
+    "status": "deleted",
+    "key": "group2",
+    "past": {
+      "complexity": "high"
     }
-  - group2: {
-      complexity: high
+  },
+  {
+    "status": "added",
+    "key": "group3",
+    "current": {
+      "cash": "100"
     }
-  + group3: {
-      cash: 100
-    }
-}
+  }
+]
