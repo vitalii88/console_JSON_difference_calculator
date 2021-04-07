@@ -15,10 +15,13 @@ Example: `gendiff /users/home/file1.yaml ../home/file2.yaml`
 [![asciicast](https://asciinema.org/a/OQmjl0ZhNuNaCRYm5ivyeheVO.svg)](https://asciinema.org/a/OQmjl0ZhNuNaCRYm5ivyeheVO)
 
 Comparison output of nested trees.
+Example: `gendiff /users/home/file1.yaml ../home/file2.yaml`
 [![asciicast](https://asciinema.org/a/405101.svg)](https://asciinema.org/a/405101)
 
 Comparison output of plain style.
+Example: `gendiff -f plain /users/home/file1.yaml ../home/file2.yaml`
 [![asciicast](https://asciinema.org/a/405570.svg)](https://asciinema.org/a/405570)
 
 Comparison output of json style.
+Example: `gendiff -f json /users/home/file1.yaml ../home/file2.yaml`
 [![asciicast](https://asciinema.org/a/405797.svg)](https://asciinema.org/a/405797)
