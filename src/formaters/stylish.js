@@ -7,14 +7,14 @@ const getIndent = (depth) => {
 };
 // const getSortObjFromKey = (object) => Object.fromEntries(Object.entries(object).sort());
 const check = (value, depth = 1) => {
+
   const idents = getIndent(depth);
-  // if (typeof value !== 'object' || value === null || value === false) {
-    if (!_.isObject(value)) {
+  if (!_.isObject(value)) {
     return value;
   }
-    // const zzz = getSortObjFromKey(value);
-  const [key, val] = Object.entries(value).flat();
-  return `{\n${idents.current}${key}:` + ` ${check(val)}\n${idents.bracket}}`;
+  const valKeys = Object.keys(value);
+  const strElems = valKeys.flatMap((key) => `\n${idents.current}  ${key}: ${check(value[key], depth + 2)}`);
+  return `{${strElems.join('')}\n${idents.bracket}}`;
 };
 
 const stylishFormater = (parsTree, depth = 1) => {

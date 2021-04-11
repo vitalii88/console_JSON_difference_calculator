@@ -35,10 +35,10 @@ const builder = (beforeObj, afterObj) => {
   // const after = getSortObjFromKey(afterObj);
   // const allKeys = getUnqKeys(before, after);
   const before = Object.keys(beforeObj);
-  console.log('before ===> ', before);
+  // console.log('before ===> ', before);
   const after = Object.keys(afterObj);
   const allKeys = getUnqKeys(before, after);
-  console.log('allKeys ===> ', allKeys);
+  // console.log('allKeys ===> ', allKeys);
 
   const tree = _.sortBy(allKeys).map((key) => {
     // console.log('key ===> ', key);
