@@ -1,16 +1,20 @@
+import _ from 'lodash';
+
 const getIndent = (depth) => {
   const current = '  '.repeat(depth);
   const bracket = (depth <= 1) ? '' : '  '.repeat(depth - 1);
   return { current, bracket };
 };
-
+// const getSortObjFromKey = (object) => Object.fromEntries(Object.entries(object).sort());
 const check = (value, depth = 1) => {
   const idents = getIndent(depth);
-  if (typeof value !== 'object') {
+  // if (typeof value !== 'object' || value === null || value === false) {
+    if (!_.isObject(value)) {
     return value;
   }
+    // const zzz = getSortObjFromKey(value);
   const [key, val] = Object.entries(value).flat();
-  return `{\n${idents.current}${key}: ${check(val)}\n${idents.bracket}}`;
+  return `{\n${idents.current}${key}:` + ` ${check(val)}\n${idents.bracket}}`;
 };
 
 const stylishFormater = (parsTree, depth = 1) => {

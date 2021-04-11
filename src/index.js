@@ -26,19 +26,26 @@ const getData = (packageDist, fileType) => {
 const getSortObjFromKey = (object) => Object.fromEntries(Object.entries(object).sort());
 
 const getUnqKeys = (firstObj, secondObj) => [
-  ...new Set([...Object.keys(firstObj), ...Object.keys(secondObj)]),
+  // ...new Set([...Object.keys(firstObj), ...Object.keys(secondObj)]),
+  ...new Set([...firstObj, ...secondObj]),
 ];
 
 const builder = (beforeObj, afterObj) => {
-  const before = getSortObjFromKey(beforeObj);
-  const after = getSortObjFromKey(afterObj);
+  // const before = getSortObjFromKey(beforeObj);
+  // const after = getSortObjFromKey(afterObj);
+  // const allKeys = getUnqKeys(before, after);
+  const before = Object.keys(beforeObj);
+  console.log('before ===> ', before);
+  const after = Object.keys(afterObj);
   const allKeys = getUnqKeys(before, after);
+  console.log('allKeys ===> ', allKeys);
 
-  const tree = allKeys.map((key) => {
-    const past = before[key];
-    const current = after[key];
-    if (!_.has(before, key)) return { status: 'added', key, current };
-    if (!_.has(after, key)) return { status: 'deleted', key, past };
+  const tree = _.sortBy(allKeys).map((key) => {
+    // console.log('key ===> ', key);
+    const past = beforeObj[key];
+    const current = afterObj[key];
+    if (!_.has(beforeObj, key)) return { status: 'added', key, current };
+    if (!_.has(afterObj, key)) return { status: 'deleted', key, past };
     if (typeof past === 'object' && typeof current === 'object') {
       const children = builder(past, current);
       return { status: 'node', key, children };
