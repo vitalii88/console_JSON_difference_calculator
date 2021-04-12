@@ -1,7 +1,0 @@
-group2:
-  complexity: "high"
-group1:
-  foo: "bar"
-  rts:
-    key: "value"
-  baz: "bas"

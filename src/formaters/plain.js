@@ -1,4 +1,8 @@
-const chek = (val) => (typeof val !== 'object' ? `'${val}'` : '[complex value]');
+const chek = (val) => {
+  if (val === null) return 'null';
+  if (typeof val === 'string') return `'${val}'`;
+  return typeof val !== 'object' ? val : '[complex value]';
+};
 
 const plainFormater = (parsTree, depth = '') => {
   const cleanArr = parsTree.filter((iter) => iter.status !== 'areEqual');

@@ -8,14 +8,11 @@ const readFile = (filename) => readFileSync(getFixturePath(filename), 'utf-8');
 
 describe('genDiff', () => {
   test('to compare two JSON/yaml files', () => {
-    const resultStylish = genDiff(getFixturePath('before.json').trim(), getFixturePath('after.json')).trim();
-    const resultPlain = genDiff(getFixturePath('before.json').trim(), getFixturePath('after.json'), 'plain').trim();
-    const resultJSON = genDiff(getFixturePath('before.json').trim(), getFixturePath('after.json'), 'json').trim();
-    const referenceStylish = readFile('expected_stylish').trim();
-    const referencePlain = readFile('expected_plain').trim();
-    const referenceJSON = readFile('expected_json').trim();
+    const resultStylish = genDiff(getFixturePath('file1.json').trim(), getFixturePath('file2.json')).trim();
+    const resultPlain = genDiff(getFixturePath('file1.json').trim(), getFixturePath('file2.json'), 'plain').trim();
+    const referenceStylish = readFile('result_stylish.txt').trim();
+    const referencePlain = readFile('result_plain.txt').trim();
     expect(referenceStylish).toBe(resultStylish);
     expect(referencePlain).toBe(resultPlain);
-    expect(referenceJSON).toBe(resultJSON);
   });
 });
