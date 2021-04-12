@@ -9,18 +9,14 @@ const getData = (packageDist, fileType) => {
   const normalaizDist = resolve(cwd(), packageDist);
   const data = readFileSync(normalaizDist, 'utf-8');
 
-  let res;
   switch (fileType) {
     case '.yml':
-      res = yaml.load(data);
-      break;
+      return yaml.load(data);
     case '.json':
-      res = JSON.parse(data);
-      break;
+      return JSON.parse(data);
     default:
-      res = data;
+      return data;
   }
-  return res;
 };
 
 const getUnqKeys = (firstObj, secondObj) => [
