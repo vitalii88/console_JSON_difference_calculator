@@ -11,7 +11,7 @@ const getData = (packageDist, fileType) => {
 
   let res;
   switch (fileType) {
-    case '.yaml':
+    case '.yml':
       res = yaml.load(data);
       break;
     case '.json':
@@ -23,25 +23,16 @@ const getData = (packageDist, fileType) => {
   return res;
 };
 
-const getSortObjFromKey = (object) => Object.fromEntries(Object.entries(object).sort());
-
 const getUnqKeys = (firstObj, secondObj) => [
-  // ...new Set([...Object.keys(firstObj), ...Object.keys(secondObj)]),
   ...new Set([...firstObj, ...secondObj]),
 ];
 
 const builder = (beforeObj, afterObj) => {
-  // const before = getSortObjFromKey(beforeObj);
-  // const after = getSortObjFromKey(afterObj);
-  // const allKeys = getUnqKeys(before, after);
   const before = Object.keys(beforeObj);
-  // console.log('before ===> ', before);
   const after = Object.keys(afterObj);
   const allKeys = getUnqKeys(before, after);
-  // console.log('allKeys ===> ', allKeys);
 
   const tree = _.sortBy(allKeys).map((key) => {
-    // console.log('key ===> ', key);
     const past = beforeObj[key];
     const current = afterObj[key];
     if (!_.has(beforeObj, key)) return { status: 'added', key, current };

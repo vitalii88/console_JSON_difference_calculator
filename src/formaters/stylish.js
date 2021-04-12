@@ -5,16 +5,15 @@ const getIndent = (depth) => {
   const bracket = (depth <= 1) ? '' : '  '.repeat(depth - 1);
   return { current, bracket };
 };
-// const getSortObjFromKey = (object) => Object.fromEntries(Object.entries(object).sort());
-const check = (value, depth = 1) => {
 
+const check = (value, depth = 1) => {
   const idents = getIndent(depth);
   if (!_.isObject(value)) {
     return value;
   }
-  const valKeys = Object.keys(value);
-  const strElems = valKeys.flatMap((key) => `\n${idents.current}  ${key}: ${check(value[key], depth + 2)}`);
-  return `{${strElems.join('')}\n${idents.bracket}}`;
+  const keys = Object.keys(value);
+  const result = keys.flatMap((key) => `\n${idents.current}  ${key}: ${check(value[key], depth + 2)}`);
+  return `{${result.join('')}\n${idents.bracket}}`;
 };
 
 const stylishFormater = (parsTree, depth = 1) => {
@@ -35,6 +34,7 @@ const stylishFormater = (parsTree, depth = 1) => {
         return `${idents.current}  ${key}: ${stylishFormater(children, depth + 2)}`;
     }
   });
+
   return [
     '{',
     ...str,
