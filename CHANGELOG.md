@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.3.0](https://github.com/vitalii88/frontend-project-lvl2/compare/v4.2.0...v4.3.0) (2021-04-13)
+
+
+### Features
+
+* add JSON format output ([58b9e92](https://github.com/vitalii88/frontend-project-lvl2/commit/58b9e921a73ad3e65a196b99fbb9c41d7dcc03ff))
+
 ## [4.2.0](https://github.com/vitalii88/frontend-project-lvl2/compare/v4.1.0...v4.2.0) (2021-04-06)
 
 
