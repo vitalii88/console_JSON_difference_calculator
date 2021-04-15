@@ -5,17 +5,17 @@ const chek = (val) => {
 };
 
 const plainFormater = (parsTree, depth = '') => {
-  const cleanArr = parsTree.filter((iter) => iter.status !== 'areEqual');
+  const cleanArr = parsTree.filter((iter) => iter.type !== 'unchanged');
   const res = cleanArr.flatMap(({
-    status, key, past, current, children,
+    type, key, past, current, children,
   }) => {
     const fullKey = `${depth}${key}`;
-    switch (status) {
+    switch (type) {
       case 'deleted':
         return `Property '${fullKey}' was removed`;
       case 'added':
         return `Property '${fullKey}' was added with value: ${chek(current)}`;
-      case 'notEqual':
+      case 'changed':
         return `Property '${fullKey}' was updated. From ${chek(past)} to ${chek(current)}`;
       default:
         return `${plainFormater(children, `${fullKey}.`)}`;

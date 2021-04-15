@@ -12,18 +12,18 @@ const astBuilder = (beforeObj, afterObj) => {
   return _.sortBy(allKeys).map((key) => {
     const past = beforeObj[key];
     const current = afterObj[key];
-    if (!_.has(beforeObj, key)) return { status: 'added', key, current };
-    if (!_.has(afterObj, key)) return { status: 'deleted', key, past };
-    if (typeof past === 'object' && typeof current === 'object') {
+    if (!_.has(beforeObj, key)) return { type: 'added', key, current };
+    if (!_.has(afterObj, key)) return { type: 'deleted', key, past };
+    if (_.isPlainObject(past) && _.isPlainObject(current)) {
       const children = astBuilder(past, current);
-      return { status: 'node', key, children };
+      return { type: 'nested', key, children };
     }
     if (!_.isEqual(past, current)) {
       return {
-        status: 'notEqual', key, past, current,
+        type: 'changed', key, past, current,
       };
     }
-    return { status: 'areEqual', key, past };
+    return { type: 'unchanged', key, past };
   });
 };
 export default astBuilder;

@@ -19,16 +19,16 @@ const check = (value, depth = 1) => {
 const stylishFormater = (parsTree, depth = 1) => {
   const idents = getIndent(depth);
   const str = parsTree.flatMap(({
-    status, key, past, current, children,
+    type, key, past, current, children,
   }) => {
-    switch (status) {
+    switch (type) {
       case 'deleted':
         return `${idents.current}- ${key}: ${check(past, depth + 2)}`;
       case 'added':
         return `${idents.current}+ ${key}: ${check(current, depth + 2)}`;
-      case 'areEqual':
+      case 'unchanged':
         return `${idents.current}  ${key}: ${check(past, depth + 2)}`;
-      case 'notEqual':
+      case 'changed':
         return `${idents.current}- ${key}: ${check(past, depth + 2)}\n${idents.current}+ ${key}: ${check(current, depth + 2)}`;
       default:
         return `${idents.current}  ${key}: ${stylishFormater(children, depth + 2)}`;

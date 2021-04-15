@@ -3,11 +3,11 @@ import { cwd } from 'process';
 import { readFileSync } from 'fs';
 import yaml from 'js-yaml';
 
-const getFormatData = (packageDist, fileType) => {
+const getData = (packageDist, type) => {
   const normalaizDist = resolve(cwd(), packageDist);
   const data = readFileSync(normalaizDist, 'utf-8');
 
-  switch (fileType) {
+  switch (type) {
     case '.yml':
       return yaml.load(data);
     case '.json':
@@ -17,4 +17,4 @@ const getFormatData = (packageDist, fileType) => {
   }
 };
 
-export default getFormatData;
+export default getData;
