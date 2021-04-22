@@ -2,9 +2,9 @@ import yaml from 'js-yaml';
 
 const parser = (data, type) => {
   switch (type) {
-    case '.yml':
+    case 'yml':
       return yaml.load(data);
-    case '.json':
+    case 'json':
       return JSON.parse(data);
     default:
       return data;

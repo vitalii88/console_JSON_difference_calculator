@@ -6,7 +6,7 @@ import astBuilder from './ast.js';
 import formater from './formaters/index.js';
 
 const getData = (file) => {
-  const fileType = extname(file);
+  const fileType = extname(file).slice(1);
   const normalaizDist = resolve(cwd(), file);
   const data = readFileSync(normalaizDist, 'utf-8');
   return parser(data, fileType);
